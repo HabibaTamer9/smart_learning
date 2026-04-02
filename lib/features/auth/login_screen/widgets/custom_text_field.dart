@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_learning/core/const/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
@@ -33,7 +34,7 @@ class CustomTextField extends StatelessWidget {
               borderSide: BorderSide(color: Colors.grey, width: 1),
               borderRadius: BorderRadius.circular(10)),
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.deepPurple, width: 1.4),
+              borderSide: BorderSide(color: AppColors.primaryColor, width: 1.4),
               borderRadius: BorderRadius.circular(10)),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smart_learning/core/const/app_colors.dart';
 
+import '../../core/const/app_size.dart';
 import '../auth/login_screen/login.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -39,11 +41,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: Stack(
         children: [
           Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+            width: AppSize.width,
+            height: AppSize.height,
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                  colors: [Colors.white, Colors.deepPurple],
+                  colors: [Colors.white, AppColors.primaryColor],
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter),
             ),
@@ -51,13 +53,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.45,
+                  height: AppSize.height * 0.45,
                   width: 280.w,
                   child: PageView.builder(
-
+                    physics: NeverScrollableScrollPhysics(),
                     itemCount: onboardingData.length,
                     itemBuilder: (context, index) {
-                      return Image.asset(onboardingData[index]["image"]!,width: 278.w,);
+                      return Image.asset(
+                        onboardingData[index]["image"]!,
+                        width: 278.w,
+                      );
                     },
                     onPageChanged: (val) {
                       setState(() {
@@ -76,7 +81,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             left: -50,
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 40, horizontal: 94.5),
-              height: MediaQuery.of(context).size.height * 0.51,
+              height: AppSize.height * 0.51,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -87,52 +92,49 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 250,
-                    child: PageView.builder(
-                      itemCount: onboardingData.length,
-                        itemBuilder: (context, i) {
-                        var data = onboardingData[index];
-                      return Column(children: [Padding(
+                  Expanded(
+                    flex: 4,
+                    child: Column(children: [
+                      Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 20.0, horizontal: 50),
                         child: Center(
                           child: Text(
-                            data["title"]!,
-                            style: TextStyle(
-                                fontSize: 24.sp, fontWeight: FontWeight.bold),
+                            onboardingData[index]["title"]!,
+                            style: Theme.of(context).textTheme.headlineLarge,
                             textAlign: TextAlign.center,
                           ),
                         ),
                       ),
-                        Text(
-                          data["subtitle"]!,
-                          style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500),
-                          textAlign: TextAlign.center,
-                        ),]);
-                    },
-                    ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(
-                        onboardingData.length,
-                            (i) => Container(
-                          margin: const EdgeInsets.all(3.0),
-                          width: index == i ? 20 : 10,
-                          height: 10,
-                          decoration: BoxDecoration(
-                            color: index == i
-                                ? Colors.deepPurpleAccent
-                                : Colors.grey,
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                        ),
+                      Text(
+                        onboardingData[index]["subtitle"]!,
+                        style: TextStyle(
+                            fontSize: 18.sp, fontWeight: FontWeight.w500),
+                        textAlign: TextAlign.center,
                       ),
-                    )
+                    ]),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Padding(
+                        padding: const EdgeInsets.all(30.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(
+                            onboardingData.length,
+                            (i) => Container(
+                              margin: const EdgeInsets.all(3.0),
+                              width: index == i ? 20 : 10,
+                              height: 10,
+                              decoration: BoxDecoration(
+                                color: index == i
+                                    ? AppColors.secondaryColor
+                                    : Colors.grey,
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                            ),
+                          ),
+                        )),
                   ),
                   Spacer(),
                   Row(
@@ -140,14 +142,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     children: [
                       TextButton(
                         onPressed: () {
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Login()));
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) => Login()));
                         },
                         child: Text(
                           "Skip",
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
-                              color: Colors.deepPurple),
+                              color: AppColors.primaryColor),
                         ),
                       ),
                       TextButton(
@@ -158,7 +161,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               curve: Curves.easeIn,
                             );
                           } else {
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Login()));
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Login()));
                           }
                         },
                         child: Text(
@@ -166,7 +172,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
-                              color: Colors.deepPurple),
+                              color: AppColors.primaryColor),
                         ),
                       ),
                     ],
@@ -174,7 +180,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

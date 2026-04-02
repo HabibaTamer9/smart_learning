@@ -6,6 +6,7 @@ static final Color secondaryColor = Color(0xFF51A8FF);
 static final Color primaryTextColor = Color(0xFF2C2C2C);
 static final Color secondaryTextColor = Color(0xFFAEAEAE);
 static final Color thirdTextColor = Color(0xFFD2D2D2);
+static final Color profileTextColor = Color(0xFF202244);
 static final Color backgroundColor = Color(0xFFF9FBFF);
 static final Color redColor = Color(0xFFFF4C4C);
 static final Color yellowColor = Color(0xFFFFC71E);

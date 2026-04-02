@@ -1,10 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_learning/features/onboarding_screens/onboarding_screen.dart';
+import 'package:smart_learning/core/theme_data.dart';
+import 'package:smart_learning/features/auth/login_screen/login.dart';
 
 import 'features/auth/firebase_options.dart';
-import 'features/auth/login_screen/login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,11 +25,13 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         // Use builder only if you need to use library outside ScreenUtilInit context
-        builder: (_ , child) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      home: OnboardingScreen(),
-    );});
+        builder: (_, child) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            debugShowCheckedModeBanner: false,
+            theme: AppThemeData.lightTheme,
+            home:Login()
+          );
+        });
   }
 }
