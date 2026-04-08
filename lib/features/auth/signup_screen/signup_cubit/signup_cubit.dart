@@ -54,7 +54,7 @@ class SignupCubit extends Cubit<SignupState> {
         }
       }
     } on FirebaseAuthException catch (e) {
-      String errorMessage = 'Erorr on create account';
+      String errorMessage = 'Error on create account';
       if (e.code == 'weak-password') {
         errorMessage = 'The password provided is too weak.';
       } else if (e.code == 'email-already-in-use') {

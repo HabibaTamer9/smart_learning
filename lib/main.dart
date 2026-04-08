@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smart_learning/admin/features/main_screen/admin_main_screen.dart';
 import 'package:smart_learning/core/theme_data.dart';
 import 'package:smart_learning/features/auth/login_screen/login.dart';
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
             theme: AppThemeData.lightTheme,
-            home:Login()
+            home:AdminMainScreen()
           );
         });
   }
